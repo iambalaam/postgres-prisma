@@ -1,0 +1,41 @@
+.checkbox input[type='checkbox'] {
+    display: none;
+}
+
+.checkbox input[type='text'] {
+    flex-grow: 1;
+    margin: 16px;
+}
+
+.checkbox svg {
+    color: #A6ACAF;
+    transition: 0.2s;
+    display: inline;
+}
+
+.checkbox .preview svg {
+    color: #CACFD2;
+}
+
+.checkbox .delete {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 16px;
+    right: 16px;
+    float: right;
+    border-radius: 50%;
+    background-color: #E74C3C;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* functional */
+.checkbox.submit input:checked+label svg:nth-of-type(1) {
+    color: #28B463;
+}
+
+.checkbox.submit input:not(:checked)+label svg:nth-of-type(2) {
+    color: #E74C3C;
+}

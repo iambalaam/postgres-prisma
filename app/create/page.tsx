@@ -1,12 +1,14 @@
 import { checkbox } from '../../components/question/checkbox'
-import './create.css';
 
 export default function CreateSurvey() {
     return <main>
         <form action="/api/create-survey" method="post">
             <checkbox.Create id="1" />
+            <checkbox.Create id="2" />
 
-            <button type="submit">Create</button>
+            <div className="card">
+                <button type="submit">Create</button>
+            </div>
 
         </form>
     </main>

@@ -21,14 +21,18 @@ export default async function ViewSurvey({ params }: { params: { id: string } })
     const questions = survey.content as Question[];
     const responses = answers.map((answer) => answer.content as unknown[])
 
-    return (questions)
-        .map((question, i) => {
-            switch (question.type) {
-                case 'checkbox':
-                    return <checkbox.View
-                        prompt={question.prompt}
-                        answers={responses.map((x) => x[i] as boolean)}
-                    />
-            }
-        })
+    return <main>
+        {
+            (questions)
+                .map((question, i) => {
+                    switch (question.type) {
+                        case 'checkbox':
+                            return <checkbox.View
+                                prompt={question.prompt}
+                                answers={responses.map((x) => x[i] as boolean)}
+                            />
+                    }
+                })
+        }
+    </main>
 }

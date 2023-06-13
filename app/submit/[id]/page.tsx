@@ -15,10 +15,12 @@ export default async function SubmitSurvey({ params }: { params: { id: string } 
             {questions.map(({ type, prompt }, i) => {
                 switch (type) {
                     case 'checkbox':
-                        return <checkbox.Submit prompt={prompt} id={i.toString()} />
+                        return <checkbox.Submit prompt={prompt} id={`_${i}`} />
                 }
             })}
-            <button type='submit'>Submit</button>
+            <div className="card">
+                <button type='submit'>Submit</button>
+            </div>
         </form>
     </main>
 }
