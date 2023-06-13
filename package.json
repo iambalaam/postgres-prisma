@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "prisma generate && next dev",
-    "build": "prisma generate && prisma db push && prisma db seed && next build",
+    "reseed": "dotenv -e .env -- prisma db seed",
+    "build": "dotenv -e .env -- prisma generate && prisma db push && prisma db seed && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@types/ms": "^0.7.31",
+    "dotenv-cli": "^7.2.1",
     "prisma": "^4.13.0",
     "turbo": "^1.9.3"
   }

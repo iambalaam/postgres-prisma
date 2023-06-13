@@ -2,36 +2,64 @@ import prisma from '../lib/prisma'
 
 async function main() {
   const response = await Promise.all([
-    prisma.users.upsert({
-      where: { email: 'rauchg@vercel.com' },
-      update: {},
-      create: {
-        name: 'Guillermo Rauch',
-        email: 'rauchg@vercel.com',
-        image:
-          'https://pbs.twimg.com/profile_images/1576257734810312704/ucxb4lHy_400x400.jpg',
+    prisma.surveys.upsert({
+      where: { id: 1 },
+      update: {
+        id: 1,
+        content: [
+          { type: 'checkbox', prompt: 'yes or no?' },
+          { type: 'checkbox', prompt: 'and again?' },
+        ]
       },
-    }),
-    prisma.users.upsert({
-      where: { email: 'lee@vercel.com' },
-      update: {},
       create: {
-        name: 'Lee Robinson',
-        email: 'lee@vercel.com',
-        image:
-          'https://pbs.twimg.com/profile_images/1587647097670467584/adWRdqQ6_400x400.jpg',
-      },
+        id: 1,
+        content: [
+          { type: 'checkbox', prompt: 'yes or no?' },
+          { type: 'checkbox', prompt: 'and again?' },
+        ]
+      }
     }),
-    await prisma.users.upsert({
-      where: { email: 'stey@vercel.com' },
-      update: {},
+
+    prisma.answers.upsert({
+      where: { id: 1 },
+      update: {
+        id: 1,
+        survey_id: 1,
+        content: [true, true]
+      },
       create: {
-        name: 'Steven Tey',
-        email: 'stey@vercel.com',
-        image:
-          'https://pbs.twimg.com/profile_images/1506792347840888834/dS-r50Je_400x400.jpg',
-      },
+        id: 1,
+        survey_id: 1,
+        content: [true, true]
+      }
     }),
+    prisma.answers.upsert({
+      where: { id: 2 },
+      update: {
+        id: 2,
+        survey_id: 1,
+        content: [true, true]
+      },
+      create: {
+        id: 2,
+        survey_id: 1,
+        content: [true, true]
+      }
+    }),
+    prisma.answers.upsert({
+      where: { id: 3 },
+      update: {
+        id: 3,
+        survey_id: 1,
+        content: [false, true]
+      },
+      create: {
+        id: 3,
+        survey_id: 1,
+        content: [false, true]
+      }
+    }),
+
   ])
   console.log(response)
 }
