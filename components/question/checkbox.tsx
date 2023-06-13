@@ -3,8 +3,8 @@ import { QuestionComponent } from "./question";
 function Create({ id }: { id: string }) {
     return <div className="checkbox">
         <button className="delete">✘</button>
-        <label>?</label>
-        <input required type="text" name={id} id={id} />
+        <label htmlFor={id}>checkbox</label>
+        <input required type="text" name={'checkbox'} id={id} />
     </div>
 }
 
@@ -12,7 +12,7 @@ function Submit({ prompt, id }: { prompt: string, id: string }) {
     return <div className="checkbox">
         <h2>{prompt}</h2>
         <label htmlFor={id}></label>
-        <input id={id} name={id} type="checkbox" />
+        <input id={id} name={'checkbox'} type="checkbox" />
     </div>
 }
 

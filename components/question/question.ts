@@ -4,7 +4,8 @@ export type QuestionComponent<T> = {
     View: (props: { prompt: string, answers: T[] }) => JSX.Element;
 }
 
+export type QuestionType = 'checkbox';
 export type Question = {
-    type: 'checkbox',
+    type: QuestionType,
     prompt: string
 }
