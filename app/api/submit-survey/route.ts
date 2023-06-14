@@ -9,17 +9,38 @@ export async function POST(request: NextRequest) {
     // TODO:
     // validate data
 
-    const values = [...data.entries()].map(([type, value]) => {
+    // Horrible checkbox hack
+    // If checkbox is unchecked it will not be sent
+    // So we always prepend an unchecked one
+
+    const values = [...data.entries()];
+    const deduped = [];
+    for (let i = 0; i < values.length; i++) {
+        const [type, value] = values[i];
         switch (type as QuestionType) {
+            case 'textarea':
+                deduped.push(value.toString());
+                break;
             case 'checkbox':
-                return value === 'on';
+                if (value === 'on') {
+                    deduped.push(true);
+                    break;
+                }
+                if (value === 'off') {
+                    // check it doesn't come before an 'on'
+                    const [nextType, nextValue] = values[i + 1] || [];
+                    if (!(nextType === 'checkbox' && nextValue == 'on')) {
+                        deduped.push(false);
+                        break;
+                    }
+                }
         }
-    });
+    }
 
     await prisma.answers.create({
         data: {
             survey_id: parseInt(id!),
-            content: values
+            content: deduped
         }
     });
 

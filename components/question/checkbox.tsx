@@ -1,23 +1,27 @@
 import { QuestionComponent } from "./question";
 import './checkbox.css';
+import './question.css';
+import { MouseEventHandler } from "react";
 
-function Create({ id }: { id: string }) {
+
+function Create({ id, remove }: { id: string, remove: MouseEventHandler }) {
     return <div className="checkbox create card">
         <label htmlFor={id}>prompt: </label>
-        <input required type="text" name={'checkbox'} id={id} />
+        <input className="prompt" required type="text" name={'checkbox'} id={id} />
         <div className="preview">
             <Tick />
             <Cross />
         </div>
-        <button className="delete">✘</button>
+        <button className="delete" onClick={remove}>×</button>
     </div>
 }
 
 function Submit({ prompt, id }: { prompt: string, id: string }) {
     return <div className="checkbox submit card">
         <h2>{prompt}</h2>
-        <input id={id} name={'checkbox'} type="checkbox" />
-        <label htmlFor={id}>
+        <input type="hidden" name="checkbox" value="off"></input>
+        <input id={id} name='checkbox' type="checkbox" defaultChecked={false} />
+        <label tabIndex={0} htmlFor={id}>
             <Tick />
             <Cross />
         </label>
@@ -29,15 +33,21 @@ function View({ prompt, answers }: { prompt: string, answers: boolean[] }) {
     for (const answer of answers) {
         if (answer === true) { total++; }
     }
-    const percent = (total * 100 / answers.length).toFixed(1);
+    const percent = (total * 100 / answers.length || 0);
     return <div className="checkbox view card">
         <h2>{prompt}</h2>
-        <p>{percent}% said yes</p>
+        <div className="centered">
+            <span
+                className="pie"
+                style={{ background: `conic-gradient(#2E86C1 0, #2E86C1 ${percent}%, transparent ${percent}%)` }}
+            />
+            <span className="summary">{percent.toFixed(1)}% said yes</span>
+        </div>
     </div>;
 }
 
 // from https://fontawesomeicons.com/svg/icons/checkmark-square-2#ex-tab1
-const Tick = () => <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="3 3 19 19">
+export const Tick = () => <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="3 3 19 19">
     <g id="Layer_2" data-name="Layer 2">
         <g id="checkmark-square-2">
             <g id="checkmark-square-2-2" data-name="checkmark-square-2">
@@ -49,7 +59,7 @@ const Tick = () => <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50
 </svg>
 
 // from https://fontawesomeicons.com/svg/icons/x-square-fill
-const Cross = () => <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50-" fill="currentColor" className="bi bi-x-square-fill" viewBox="0 0 17 17">
+export const Cross = () => <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50-" fill="currentColor" className="bi bi-x-square-fill" viewBox="0 0 17 17">
     <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
 </svg>
 

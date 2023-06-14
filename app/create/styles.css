@@ -1,0 +1,16 @@
+.card button.add {
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+}
+
+.card button.add::after {
+    content: '+';
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #28B463;
+}

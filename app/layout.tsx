@@ -2,9 +2,9 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 
 export const metadata = {
-  title: 'Vercel Postgres Demo with Prisma',
+  title: 'Surveyor',
   description:
-    'A simple Next.js app with Vercel Postgres as the database and Prisma as the ORM',
+    'Create surveys!',
 }
 
 const inter = Inter({
@@ -23,4 +23,5 @@ export default function RootLayout({
       <body className={inter.variable}>{children}</body>
     </html>
   )
+
 }

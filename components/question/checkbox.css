@@ -2,33 +2,23 @@
     display: none;
 }
 
-.checkbox input[type='text'] {
-    flex-grow: 1;
-    margin: 16px;
+.centered {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.checkbox svg {
-    color: #A6ACAF;
-    transition: 0.2s;
-    display: inline;
-}
-
-.checkbox .preview svg {
-    color: #CACFD2;
-}
-
-.checkbox .delete {
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    top: 16px;
-    right: 16px;
-    float: right;
+.pie {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #2E86C1;
     border-radius: 50%;
-    background-color: #E74C3C;
-    border: none;
-    color: white;
-    cursor: pointer;
+}
+
+.checkbox.view .summary {
+    padding: 16px;
 }
 
 /* functional */

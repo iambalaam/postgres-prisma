@@ -1,0 +1,26 @@
+.card .cursor {
+    color: #dedede;
+    background-color: #a7acaf;
+    border-radius: 10px;
+}
+
+.textarea .scroller {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 250px;
+}
+
+.textarea .scroller .item {
+    word-wrap: break-word;
+}
+
+.textarea .scroller .item:nth-child(2n-1) {
+    background-color: #CACFD2;
+}
+
+.submit.textarea textarea {
+    margin-top: -16px;
+    width: 100%;
+    min-height: 64px;
+    font-size: 24px;
+}

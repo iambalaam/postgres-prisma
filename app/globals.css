@@ -25,14 +25,17 @@ main {
   padding: 10px 40px;
 }
 
-.card button[type='submit'] {
+.card button {
   cursor: pointer;
   font-size: 30px;
 
   border-radius: 8px;
   border: none;
-  background-color: #2E86C1;
-  color: white;
   padding: 16px;
   margin: auto;
+}
+
+.card button[type='submit'] {
+  background-color: #2E86C1;
+  color: white;
 }

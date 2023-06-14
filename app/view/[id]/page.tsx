@@ -1,4 +1,5 @@
 import { checkbox } from '@/components/question/checkbox';
+import { textarea } from '@/components/question/textarea';
 import { Question } from '@/components/question/question';
 import prisma from '@/lib/prisma'
 
@@ -30,6 +31,11 @@ export default async function ViewSurvey({ params }: { params: { id: string } })
                             return <checkbox.View
                                 prompt={question.prompt}
                                 answers={responses.map((x) => x[i] as boolean)}
+                            />
+                        case 'textarea':
+                            return <textarea.View
+                                prompt={question.prompt}
+                                answers={responses.map((x) => x[i] as string)}
                             />
                     }
                 })
